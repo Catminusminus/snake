@@ -34,8 +34,8 @@ const useSnake = (): [(number | null)[], number | null, number, boolean] => {
     )
   }
 
-  const countRef = React.useRef(direction)
-  countRef.current = direction
+  const directionRef = React.useRef(direction)
+  directionRef.current = direction
 
   const forwardSnake = () => {
     setBodyIndexes(preBodyIndexes =>
@@ -46,7 +46,7 @@ const useSnake = (): [(number | null)[], number | null, number, boolean] => {
         return body
       })(preBodyIndexes, snakeHeadIndex),
     )
-    switch (countRef.current) {
+    switch (directionRef.current) {
       case '←':
         setHeadPos(preHeadPos => ({ ...preHeadPos, x: preHeadPos.x - 1 }))
         break
@@ -72,7 +72,7 @@ const useSnake = (): [(number | null)[], number | null, number, boolean] => {
     const id = setTimeout(timeGoes, speed)
 
     return () => clearTimeout(id)
-  }, [speed, isGameover, headPos, countRef])
+  }, [speed, isGameover, headPos, directionRef])
 
   React.useEffect(() => {
     if (isEatingFruit) {

@@ -205,12 +205,12 @@ const useSnake = (): [
   const isSuicided = bodyIndexes.includes(snakeHeadIndex)
   const isGameover = isFrameout || isSuicided
 
-  const countRef = React.useRef(direction)
-  countRef.current = direction
+  const directionRef = React.useRef(direction)
+  directionRef.current = direction
 
   const forwardSnake = () => {
     dispatch(moveBody(snakeHeadIndex))
-    dispatch(moveHead(countRef.current))
+    dispatch(moveHead(directionRef.current))
   }
 
   const timeGoes = () => {
@@ -223,7 +223,7 @@ const useSnake = (): [
     const id = setTimeout(timeGoes, speed)
 
     return () => clearTimeout(id)
-  }, [speed, isGameover, headPos, countRef])
+  }, [speed, isGameover, headPos, directionRef])
 
   React.useEffect(() => {
     if (isEatingFruit) {
