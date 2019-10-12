@@ -164,8 +164,12 @@ const reducer = (state: State = initialState, action: Action) => {
               },
             },
           }
-        default:
+        default: {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const _: never = action.type
+
           return state
+        }
       }
     case 'GROW_UP_SNAKE': {
       const bodyIndexes = state.snake.bodyIndexes
@@ -179,8 +183,12 @@ const reducer = (state: State = initialState, action: Action) => {
         },
       }
     }
-    default:
+    default: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const _: never = action.type
+
       return state
+    }
   }
 }
 
